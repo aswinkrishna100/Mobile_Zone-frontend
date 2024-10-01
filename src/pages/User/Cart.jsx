@@ -4,11 +4,14 @@ import { deleteCartAPI, getCartAPI } from '../../services/allAPI'
 import { BASE_URL } from '../../services/baseURL'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { EditContext } from '../../context/EditContext'
+import Checkout from './Checkout'
 
 
 function Cart() {
 
   const {darkMode} = useContext(ThemeContext)
+  const {editResponse,setEditResponse} = useContext(EditContext)
   const [cart,setCart] = useState([])
   const [total,setTotal] = useState()
 
@@ -34,7 +37,11 @@ function Cart() {
 
   useEffect(()=>{
     getCartProducts()
-  },[])
+  },[setEditResponse])
+
+  useEffect(()=>{
+    displaytotal()
+  },[cart])
 
   const handleDelete = async(id)=>{
     const token = sessionStorage.getItem('token')
@@ -57,12 +64,20 @@ function Cart() {
     }
   }
 
-  
+  const displaytotal = ()=>{
+    if(cart.length >0){
+      setTotal(cart?.map(item=>item.productid.price).reduce((n1,n2)=>n1+n2))
+    }
+  }
 
+  
+  
+  console.log(total);
+  
   return (
     <div className={darkMode ? `bg-dark text-light`:`bg-light text-dark`}>
 
-      <table className='w-75 m-5 shadow'>
+      <table className='m-5 shadow' style={{width:"80%"}}>
           <thead className='text-center mb-3'>
               <tr >
                 <th>Name</th>
@@ -83,10 +98,10 @@ function Cart() {
                   <td>{item.productid.name}</td>
                   <td>{item.productid.category}</td>
                   <td>{item.productid.description}</td>
-                  <td><img src={item?`${BASE_URL}/uploads/${item.productid.image}`:""} alt="" style={{width:'200px', height:"100px"}} /></td>
+                  <td><img src={item?`${BASE_URL}/uploads/${item.productid.image}`:""} alt="" style={{width:'200px', height:"200px"}} /></td>
                   <td>{item.productid.price}</td>
                   <td>
-                    <button className='btn btn-danger ms-4' onClick={()=>handleDelete(item.productid._id)}>Remove</button>
+                    <button className='btn btn-danger ms-4 me-2' onClick={()=>handleDelete(item.productid._id)}>Remove</button>
                   </td>
               </tr>
             </>
@@ -97,9 +112,9 @@ function Cart() {
 
        <div className='m-5'>
           <h2>Cart Summary</h2>
-          <h5>Total Products :</h5>
-          <h5>Total :</h5>
-         <button className='btn btn-success rounded' style={{ width: "200px" }}>CheckOut</button>
+          <h5>Total Products :{cart.length}</h5>
+          <h5>Total : {total}</h5>
+          <Checkout orders ={cart} total ={total}/>
       </div>
       <ToastContainer/>
     </div>

@@ -10,8 +10,6 @@ function Header() {
      const handleClick=()=>{
       toggleDarkMode()
      }
-console.log(darkMode);
-
 const {editResponse} = useContext(EditContext)
 
 const [token,setToken] = useState("")
@@ -35,7 +33,7 @@ useEffect(()=>{
             <Nav.Link href="#"  id='navlinks' className='fs-5'> <Link style={{color:"black", textDecoration:"none"}} to={'/about'}>About</Link></Nav.Link>
             <Nav.Link href="#" id='navlinks' style={{color:"black"}} className='fs-5'><Link style={{color:"black", textDecoration:"none"}} to={'/product'}>Products</Link></Nav.Link>
             <Nav.Link href="#" id='navlinks' style={{color:"black"}} className='fs-5'><Link style={{color:"black", textDecoration:"none"}} to={'/cart'}>Cart</Link></Nav.Link>
-            <Nav.Link href="#" id='navlinks' style={{color:"black"}} className='fs-5'>Orders</Nav.Link>
+            <Nav.Link href="#" id='navlinks' style={{color:"black"}} className='fs-5'><Link style={{color:"black", textDecoration:"none"}} to={'/userorders'} >Orders</Link></Nav.Link>
             <Nav.Link href="#footer" id='navlinks' style={{color:"black"}} className='fs-5'>Contacts</Nav.Link>
           </Nav>
 

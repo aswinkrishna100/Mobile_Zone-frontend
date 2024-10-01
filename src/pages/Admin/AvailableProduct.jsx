@@ -5,7 +5,6 @@ import { deleteProductAPI, getProductAPI } from '../../services/allAPI'
 import { BASE_URL } from '../../services/baseURL'
 import { EditContext } from '../../context/EditContext'
 import { toast } from 'react-toastify'
-import Footer from '../../components/Footer'
 
 function AvailableProduct() {
 
@@ -93,7 +92,6 @@ function AvailableProduct() {
           }
         </tbody>
       </table>
-      {/* <Footer/> */}
     </div>
   )
 }

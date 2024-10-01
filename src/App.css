@@ -1,4 +1,9 @@
-#homepage{
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;  
+  }
+  #homepage{
     background-image: url(https://img.freepik.com/free-vector/display-template-with-smartphone_79603-1240.jpg);
     width: 100%;
     height: 100vh;

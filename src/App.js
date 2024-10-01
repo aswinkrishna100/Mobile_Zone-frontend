@@ -17,6 +17,7 @@ import TotalEarning from './pages/Admin/TotalEarning';
 import Profile from './pages/User/Profile';
 import DarkModeProvider from './context/ThemeContext';
 import ProductView from './pages/User/ProductView';
+import UserOrders from './pages/User/UserOrders';
 
 function App() {
   return (
@@ -37,7 +38,8 @@ function App() {
             <Route path='/orders' element={<Orders/>}/>
             <Route path='/total' element={<TotalEarning/>}/> 
             <Route path='/profile' element={<Profile/>}/>
-            <Route path='/productview' element={<ProductView/>}/>
+            <Route path='/productview/:id' element={<ProductView/>}/>
+            <Route path='/userorders' element={<UserOrders/>}/>
           </Routes>
           <Footer/>
           </DarkModeProvider>

@@ -3,7 +3,7 @@ import { Button, Form, Modal } from 'react-bootstrap'
 
 function Profile() {
     const [show, setShow] = useState(false);
-    const user = sessionStorage.getItem('user')    
+    const user = JSON.parse(sessionStorage.getItem('user'))    
     
   return (
     <div>
@@ -21,7 +21,7 @@ function Profile() {
         <Modal.Body>
             <div className='fs-4 fw-large text center' id='profileimage'></div>
             <Form.Label>Name</Form.Label>
-            <input type="text" className='form-control mb-3' disabled/>
+            <input type="text" className='form-control mb-3' value={user.fname} disabled/>
             <Form.Label>Email</Form.Label>
             <input type="email" className='form-control mb-3' disabled/>
             <Form.Label>Address</Form.Label>

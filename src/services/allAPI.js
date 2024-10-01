@@ -52,3 +52,28 @@ export const getCartAPI = async(reqHeader,id)=>{
 export const deleteCartAPI = async(productid,id,reqHeader)=>{
     return await commonAPI ("POST",`${BASE_URL}/delete-cart/${id}`,{productid},reqHeader)
 }
+
+export const ViewProductAPI = async(id)=>{
+    return await commonAPI ("GET",`${BASE_URL}/product-view/${id}`,"","")
+}
+
+export const paymentAPI = async(reqBody,reqHeader)=>{
+    return await commonAPI ("POST",`${BASE_URL}/user/order/payment`,reqBody,reqHeader)
+}
+
+export const OrdersAPI = async(reqBody,reqHeader,id)=>{
+    return await commonAPI ("POST",`${BASE_URL}/user/place-orders/${id}`,reqBody,reqHeader)
+}
+
+export const DeleteCartbyOrderAPI = async(reqHeader,id)=>{
+    return await commonAPI ("DELETE",`${BASE_URL}/delete-cart-orders/${id}`,{},reqHeader)
+}
+
+export const getOrderUserAPI = async(reqHeader,id)=>{
+    return await commonAPI ("GET",`${BASE_URL}/user/order-details/${id}`,"",reqHeader)
+}
+
+export const getOrderAdminAPI = async(reqHeader)=>{
+    return await commonAPI ("GET",`${BASE_URL}/admin/order-details`,"",reqHeader)
+}
+

@@ -101,21 +101,21 @@ function Products() {
         product?.length > 0 ?
         product?.map((item,index)=>(
         <Col lg={3} md={2} sm={1} className='mb-4'>
-        <Card style={{ width: '18rem' }}>
+        <Card style={{ width: '20rem' }}>
       <Card.Img variant="top" src={item?`${BASE_URL}/uploads/${item.image}`:""} style={{height:"300px"}}/>
       <Card.Body>
         <Card.Title>{item?.name}</Card.Title>
         <Card.Text>
         <h5>{item?.category}</h5>
-        <h5> {item?.description.slice(0,90)}...</h5>
+        <p> {item?.description.slice(0,100)}...</p>
         <h5> {item?.price}</h5>
         </Card.Text>
-        <Button variant="primary"><Link to={'/productview'} style={{color:'white', textDecoration:"none"}}>View</Link></Button>
+        <Button variant="primary"><Link to={`/productview/${item._id}`} style={{color:'white', textDecoration:"none"}}>View</Link></Button>
         <Button variant="primary" className='ms-2' onClick={()=>addtoCart(item._id)}>Cart</Button>
       </Card.Body>
     </Card>
         </Col>
-        )):""
+        )):"Nothing to Display"
       }
       </Row>
       <ToastContainer/>

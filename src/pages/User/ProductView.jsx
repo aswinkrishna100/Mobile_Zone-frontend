@@ -1,18 +1,36 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import { ViewProductAPI } from '../../services/allAPI';
+import { BASE_URL } from '../../services/baseURL';
 
 function ProductView() {
+  const {id} = useParams()
+
+  const [product,setProduct] = useState([])  
+
+  const viewproduct = async()=>{
+    const result = await ViewProductAPI(id)
+    setProduct(result.data)
+    console.log(result.data);
+  }
+
+  useEffect(()=>{
+    viewproduct()
+  },[])
+  
   return (
     <div>
       <Row>
         <Col>
-        <img id='viewproduct' className='img fluid' src="https://www.livemint.com/lm-img/img/2024/08/07/1600x900/v40_1723019341566_1723019349005.jpg" alt="" />
+        <img id='viewproduct' className='img fluid' src={product?`${BASE_URL}/uploads/${product.image}`:""} alt="No Image" style={{height:"500px"}} />
         </Col>
         <Col>
-        <h2>Name</h2>
-        <h4>Brand</h4>
-        <h4>Description</h4>
-        <h3>price</h3>
+        <h2>{product?.name}</h2>
+        <h4>Brand : {product?.brand}</h4>
+        <h2>Description</h2>
+        <h5>{product?.description}</h5>
+        <h3>$ {product?.price}</h3>
         <button className='btn btn-primary me-2'>Add to Cart</button>
         <button className='btn btn-success'>Payment</button>
         </Col>
@@ -23,5 +41,3 @@ function ProductView() {
 }
 
 export default ProductView
-
-
