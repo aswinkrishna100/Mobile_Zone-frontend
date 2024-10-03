@@ -22,8 +22,8 @@ useEffect(()=>{
 },[editResponse])
 
   return (
-    <div >
-    <Navbar expand="lg"  id='navbar'>
+    <div id='navbar'>
+    <Navbar expand="lg">
       <Container>
         <Navbar.Brand href="#" ><Link className='fs-2 fw-bold' style={{textDecoration:"none", color:"black"}} to={'/'}>Mobile Zone</Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

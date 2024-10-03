@@ -55,7 +55,6 @@ const handleUpdate = async()=>{
       alert("Unauthorized User")
     }
     const result = await editProductAPI(product._id,reqBody,reqHeader)
-    console.log(result);    
     if(result.status == 200){
       handleClose()
       toast.success('Product Updated')

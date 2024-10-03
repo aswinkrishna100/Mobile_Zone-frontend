@@ -59,3 +59,24 @@
     height: 400px; 
     width: 80%;  
 }
+
+#divtable{
+    overflow-x: auto;
+}
+
+#table{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#navbar{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+}
+
+#footer{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;  
+}

@@ -12,7 +12,6 @@ function ProductView() {
   const viewproduct = async()=>{
     const result = await ViewProductAPI(id)
     setProduct(result.data)
-    console.log(result.data);
   }
 
   useEffect(()=>{
@@ -25,13 +24,13 @@ function ProductView() {
         <Col>
         <img id='viewproduct' className='img fluid' src={product?`${BASE_URL}/uploads/${product.image}`:""} alt="No Image" style={{height:"500px"}} />
         </Col>
-        <Col>
-        <h2>{product?.name}</h2>
-        <h4>Brand : {product?.brand}</h4>
-        <h2>Description</h2>
-        <h5>{product?.description}</h5>
-        <h3>$ {product?.price}</h3>
-        <button className='btn btn-primary me-2'>Add to Cart</button>
+        <Col className='fw-bold'>
+        <p>{product?.name}</p>
+        <p>Brand : {product?.brand}</p>
+        <p>Description :</p>
+        <p>{product?.description}</p>
+        <p>$ {product?.price}</p>
+        <button className='btn btn-primary me-2 mb-1'>Add to Cart</button>
         <button className='btn btn-success'>Payment</button>
         </Col>
         

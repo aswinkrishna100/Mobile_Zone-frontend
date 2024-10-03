@@ -18,6 +18,8 @@ import Profile from './pages/User/Profile';
 import DarkModeProvider from './context/ThemeContext';
 import ProductView from './pages/User/ProductView';
 import UserOrders from './pages/User/UserOrders';
+import ForgotPassword from './pages/User/ForgotPassword';
+import ResetPassword from './pages/User/ResetPassword';
 
 function App() {
   return (
@@ -40,6 +42,8 @@ function App() {
             <Route path='/profile' element={<Profile/>}/>
             <Route path='/productview/:id' element={<ProductView/>}/>
             <Route path='/userorders' element={<UserOrders/>}/>
+            <Route path='/forgot' element={<ForgotPassword/>}/>
+            <Route path='/reset/:token' element={<ResetPassword/>}/>
           </Routes>
           <Footer/>
           </DarkModeProvider>

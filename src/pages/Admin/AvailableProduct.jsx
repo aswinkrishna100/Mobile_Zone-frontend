@@ -54,10 +54,10 @@ function AvailableProduct() {
   }
 
   return (
-    <div>
+    <div id='divtable'>
       <h1 className='text-center mb-5 mt-5'>Available Products</h1>
       <button className='btn btn-primary m-3'><Link to={'/add'} style={{color:"white", textDecoration:"none"}}>Add Product</Link></button>
-      <table className='shadow table table-bordered m-2' style={{width:'90%'}}>
+      <table className='shadow table table-bordered m-2' style={{width:'90%'}} id='table'>
         <thead className='mb-3 text-center'>
             <tr>
                 <th>Name</th>

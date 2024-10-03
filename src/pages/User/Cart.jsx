@@ -69,15 +69,11 @@ function Cart() {
       setTotal(cart?.map(item=>item.productid.price).reduce((n1,n2)=>n1+n2))
     }
   }
-
-  
-  
-  console.log(total);
   
   return (
-    <div className={darkMode ? `bg-dark text-light`:`bg-light text-dark`}>
+    <div className={darkMode ? `bg-dark text-light`:`bg-light text-dark`} id='divtable'>
 
-      <table className='m-5 shadow' style={{width:"80%"}}>
+      <table className='m-5 shadow' style={{width:"80%"}} id='table'>
           <thead className='text-center mb-3'>
               <tr >
                 <th>Name</th>

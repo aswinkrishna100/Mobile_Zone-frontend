@@ -77,3 +77,14 @@ export const getOrderAdminAPI = async(reqHeader)=>{
     return await commonAPI ("GET",`${BASE_URL}/admin/order-details`,"",reqHeader)
 }
 
+export const editUserAPI = async(id,reqBody,reqHeader)=>{
+    return await commonAPI("PUT",`${BASE_URL}/edituser/${id}`,reqBody,reqHeader)
+}
+
+export const ResetPasswordAPI = async(email)=>{
+    return await commonAPI("POST",`${BASE_URL}/reset/password`,{email},"")
+}
+
+export const getUsersAPI = async()=>{
+    return await commonAPI("GET",`${BASE_URL}/user/details`,"","")
+}

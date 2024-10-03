@@ -39,7 +39,7 @@ function UserOrders() {
         {
             orders?.length > 0 ?
             orders.map((item,index)=>(
-            <Col lg={12} md={1} sm={1} className='m-4'>
+            <Col lg={12} md={12} sm={12} className='m-4'>
             <Card style={{ width: '80rem'}}>
             <Card.Body className='d-flex'>
                 <Card.Text style={{fontWeight:'bold'}}>
@@ -56,7 +56,7 @@ function UserOrders() {
                 ))
                 }
                 <div className='ms-auto'>
-                    <Button variant="primary" className='me-2' style={{height:"50px"}}>Download</Button>
+                    <Button variant="primary" style={{height:"50px"}}>Download</Button>
                 </div>
             </Card.Body>
             </Card>

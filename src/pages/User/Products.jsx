@@ -100,7 +100,7 @@ function Products() {
       {
         product?.length > 0 ?
         product?.map((item,index)=>(
-        <Col lg={3} md={2} sm={1} className='mb-4'>
+        <Col lg={3} md={6} sm={12} className='mb-4'>
         <Card style={{ width: '20rem' }}>
       <Card.Img variant="top" src={item?`${BASE_URL}/uploads/${item.image}`:""} style={{height:"300px"}}/>
       <Card.Body>
