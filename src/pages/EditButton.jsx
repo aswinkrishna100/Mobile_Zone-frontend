@@ -57,10 +57,10 @@ const handleUpdate = async()=>{
     const result = await editProductAPI(product._id,reqBody,reqHeader)
     if(result.status == 200){
       handleClose()
-      toast.success('Product Updated')
+      alert('Product Updated')
       setEditResponse(result)
     }else{
-      toast.error('Error')
+      alert('Error')
       console.log(result);
       handleClose()
     }

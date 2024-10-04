@@ -37,28 +37,31 @@ function Orders() {
         {
             orders?.length > 0 ?
             orders.map((item,index)=>(
-            <Col lg={12} md={1} sm={1} className='m-4'>
+            <Col lg={12} md={1} sm={1} className='ms-2'>
             <Card style={{ width: '80rem'}}>
             <Card.Body className='d-flex'>
                 <Card.Text style={{fontWeight:'bold'}}>
-                <p>Order ID : {item?._id}</p>
-                <p>Time : {item?.orderDate.toLocaleString()}</p>
-                <p>Status : {item?.status}</p>
-               <p>Total Amount : {item?.amount}</p>
-               <p>Name : {item.userid.fname} {item.userid.lname}</p>
-               <p>Email : {item.userid.email}</p>
-               <p>Address : {item.userid.address}</p>
+                <Col>
+                    <p>Order ID : {item?._id}</p>
+                    <p>Time : {item?.orderDate.toLocaleString()}</p>
+                    <p>Status : {item?.status}</p>
+                   <p>Total Amount : {item?.amount}</p>
+                   <p>Name : {item.userid.fname} {item.userid.lname}</p>
+                   <p>Email : {item.userid.email}</p>
+                   <p>Address : {item.userid.address}</p>
+                </Col>
                 </Card.Text>
                 {item.products.map((items,index)=>(
-                <div className='ms-5 me-5'>
+                <Col  className='ms-3 me-5'>
                     <Card.Img variant="top"  src={items?`${BASE_URL}/uploads/${items.productid.image}`:""} style={{height:"100px",width:"100px", backgroundSize:"cover"}} />
                     <Card.Title>{items?.productid.name}</Card.Title>
-                </div>
+                    
+                </Col>
                 ))
                 }
-                <div className='ms-auto'>
+                {/* <div className='ms-auto'>
                     <Button variant="primary" className='me-2' style={{height:"50px"}}>Download</Button>
-                </div>
+                </div> */}
             </Card.Body>
             </Card>
             </Col>

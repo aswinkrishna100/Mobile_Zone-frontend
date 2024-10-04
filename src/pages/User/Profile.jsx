@@ -20,8 +20,6 @@ function Profile() {
 
     const [preview, setPreview] = useState()
 
-    const {setProfileResponse} = useContext(EditContext)
-
     const handleEdit = ()=>{
       setEdit(true)
     }
@@ -34,19 +32,21 @@ function Profile() {
 
 
     const handleUpdate = async()=>{
-      const {fname,lname,email,address,profileImage} = editUser
-      if(!fname || !lname || !email || !address || !profileImage ){
+      const {fname,lname,email,address} = editUser
+      if(!fname || !lname || !email || !address  ){
         toast.warning("Please fill the form Completely")
       }else{
+        const user = JSON.parse(sessionStorage.getItem('user'))
+        console.log(user);
+        
         const reqBody = new FormData()
         reqBody.append("fname",fname)
         reqBody.append("lname",lname)
         reqBody.append("email",email)
         reqBody.append("address",address)
         editUser.profileImage? reqBody.append("profileImage",editUser.profileImage)
-        : reqBody.append("profileImage",editUser.profileImage)
+        : reqBody.append("profile",user.profile)
         const token = sessionStorage.getItem('token')
-        const user = JSON.parse(sessionStorage.getItem('user'))
         if(token){
           var reqHeader = {
             "Content-Type":"multipart/form-data",
@@ -59,7 +59,6 @@ function Profile() {
         if(result.status == 200){
           toast.success('Profile Updated')
           sessionStorage.setItem('user',JSON.stringify(result?.data))
-          setProfileResponse(result)
           setShow(false)
           setEdit(false)
         }else{
@@ -89,7 +88,7 @@ function Profile() {
                 !editUser.profileImage ?
                 <>
                   <input type="file" style={{display:'none'}}  onChange={(e)=>setEditUser({...editUser,profileImage:e.target.files[0]})} disabled={edit ? false : true}/>
-                  <img style={{height:"150px"}} src={user?`${BASE_URL}/uploads/${user.profile}`:""} alt="image" />
+                  <img style={{height:"150px"}} src={user?`${BASE_URL}/uploads/${user.profile}`:"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"} alt="image" />
                 </>
                 :
                 <>

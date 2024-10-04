@@ -88,3 +88,11 @@ export const ResetPasswordAPI = async(email)=>{
 export const getUsersAPI = async()=>{
     return await commonAPI("GET",`${BASE_URL}/user/details`,"","")
 }
+
+export const setPasswordAPI = async(reqBody)=>{
+    return await commonAPI('POST',`${BASE_URL}/set/password`,reqBody,"")
+}
+
+export const googleSignInAPI = async(reqBody)=>{
+    return await commonAPI("POST",`${BASE_URL}/google/SignIn`,reqBody,"")
+}

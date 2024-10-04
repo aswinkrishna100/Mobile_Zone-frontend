@@ -60,7 +60,7 @@ function AddProduct() {
                   <input type="file" style={{display:'none'}}  onChange={(e)=>setProduct({...product,productImage:e.target.files[0]})}/>
                   <img style={{height:"200px"}} src={preview?preview:"https://haryana.gov.in/wp-content/themes/sdo-theme/images/default/image-gallery.jpg"} alt="image" />
                 </label>
-                <input type="text" className='form-control mb-3' placeholder='Product Name' value={product.name} onChange={(e)=>setProduct({...product,name:e.target.value})}/>
+                <input type="text" className='form-control mb-3 mt-3' placeholder='Product Name' value={product.name} onChange={(e)=>setProduct({...product,name:e.target.value})}/>
                 <select class="form-select mb-3" aria-label="Default select example" value={product.category} onChange={(e)=>setProduct({...product,category:e.target.value})}>
                   <option selected hidden>Category</option>
                   <option value="Mobile Phone">Mobile Phone</option>

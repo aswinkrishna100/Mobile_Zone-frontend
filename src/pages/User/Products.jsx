@@ -44,6 +44,8 @@ function Products() {
     }
   }
 
+  
+
   useEffect(()=>{
     getProductDetails()
   },[editResponse])
@@ -67,7 +69,20 @@ function Products() {
     }
   }
   
+    // ascending order
 
+  const ascending = ()=>{
+    const price = product.map((item)=>(item.price));
+    console.log(price.sort((n1,n2)=>n1-n2));
+  }
+
+    // descending order
+
+  const descending = ()=>{
+    const price = product.map((item)=>(item.price));
+    console.log(price.sort((n1,n2)=>n2-n1));
+  }
+  
 
   return (
     <div className={darkMode ? `bg-dark text-light`:`bg-light text-dark`}>
@@ -84,8 +99,8 @@ function Products() {
       <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">Price low to high</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Price high to low</Dropdown.Item>
+        <Dropdown.Item href="" onClick={ascending}>Price low to high</Dropdown.Item>
+        <Dropdown.Item href="" onClick={descending}>Price high to low</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
           </Col>

@@ -20,6 +20,7 @@ import ProductView from './pages/User/ProductView';
 import UserOrders from './pages/User/UserOrders';
 import ForgotPassword from './pages/User/ForgotPassword';
 import ResetPassword from './pages/User/ResetPassword';
+import Review from './pages/User/Review';
 
 function App() {
   return (
@@ -44,6 +45,7 @@ function App() {
             <Route path='/userorders' element={<UserOrders/>}/>
             <Route path='/forgot' element={<ForgotPassword/>}/>
             <Route path='/reset/:token' element={<ResetPassword/>}/>
+            <Route path='/review' element={<Review/>}/>
           </Routes>
           <Footer/>
           </DarkModeProvider>

@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card';
 import { getOrderAPI, getOrderUserAPI } from '../../services/allAPI';
 import { Col, Row } from 'react-bootstrap';
 import { BASE_URL } from '../../services/baseURL';
+import axios from 'axios';
 
 function UserOrders() {
 
@@ -32,6 +33,20 @@ function UserOrders() {
             setOrders(result.data)
         }
     }
+    const paymentSlip = async(payment_id)=>{
+        try{
+            const pdfResponse = await axios.post(`${BASE_URL}/paymentSlip/download`,{payment_id:payment_id},{ responseType: 'blob'})
+            const url = window.URL.createObjectURL(new Blob([pdfResponse.data]))
+            const link = document.createElement('a')
+            link.href = url
+            link.setAttribute('Download',`reciept-${payment_id}.pdf`)
+            document.body.appendChild(link)
+            link.click()
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
 
   return (
     <div>
@@ -56,7 +71,7 @@ function UserOrders() {
                 ))
                 }
                 <div className='ms-auto'>
-                    <Button variant="primary" style={{height:"50px"}}>Download</Button>
+                    <Button variant="primary" style={{height:"50px"}} onClick={()=>paymentSlip(item.payment_id)} >Download</Button>
                 </div>
             </Card.Body>
             </Card>

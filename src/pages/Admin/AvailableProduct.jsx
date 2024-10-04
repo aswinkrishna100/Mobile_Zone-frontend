@@ -45,10 +45,10 @@ function AvailableProduct() {
         console.log(result);
     if(result.status==200){
       setEditResponse(result)
-      toast.success("Product Deleted")
+      alert("Product Deleted")
       
     }else{
-      toast.error("Error")
+      alert("Error")
       console.log(result);
     }
   }
