@@ -1,9 +1,10 @@
 import React from 'react'
 
 function Footer() {
+    
   return (
-    <div id='footer'>
-      <footer style={{background:"black", color:"white", width:"100%"}} className=' mt-5'>
+    <div id='footer' style={{background:"black", color:"white", width:"100%"}}>
+      <footer  className=' mt-1'>
         <div className="row pt-3">
             <div className="col">
                 <h3 className='fw-bold'>Services</h3>

@@ -1,16 +1,20 @@
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { googleSignInAPI, UserLogin } from '../services/allAPI';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { EditContext } from '../context/EditContext';
+
 function LoginForm() {
   const [user,setUser] = useState({
     email :"",
     password :""
   })
   const navigate = useNavigate()
+
+  const {setProfileResponse} = useContext(EditContext)
   
   // google login 
 
@@ -29,6 +33,7 @@ function LoginForm() {
       sessionStorage.setItem('token',result.data.token)
       toast.success("Login Successfully")
       navigate('/')
+      setProfileResponse(result)
     }else{
       toast.error("Error")
       console.log(result);
@@ -43,6 +48,7 @@ function LoginForm() {
       sessionStorage.setItem('user',JSON.stringify(result?.data.existingUser))
       sessionStorage.setItem('token',result.data.token)
       toast.success('Login Successfully')
+      setProfileResponse(result)
       if(result?.data.existingUser.role === 1){
         navigate('/dashboard')
       }else{
@@ -53,12 +59,10 @@ function LoginForm() {
     }
   }
 
-  
-
   return (
     <div className='d-flex justify-content-center align-items-center flex-column w-100' style={{height:"80vh"}}>
       <div className="row shadow-lg">
-        <div className="col">
+        <div className="col" id='loginImg'>
             <img className="img-fluid w-100"src="https://media.istockphoto.com/id/1135341047/vector/login-page-on-laptop-screen-notebook-and-online-login-form-sign-in-page-user-profile-access.jpg?s=612x612&w=0&k=20&c=EsJEsevxVZujj_IU_nLz4tZcvmcXTy7sQt03bpfz3ZQ="  />
         </div>
         <div className="col d-flex align-items-center flex-column justify-content-top">

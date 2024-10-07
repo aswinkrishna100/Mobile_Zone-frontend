@@ -25,8 +25,8 @@ export const AddProductAPI = async(product,reqHeader)=>{
     return await commonAPI ("POST",`${BASE_URL}/admin/add-product`,product,reqHeader)
 }
 
-export const getProductAPI = async(reqHeader)=>{
-    return await commonAPI ("GET",`${BASE_URL}/admin/get-product`,"",reqHeader)
+export const getProductAPI = async(search)=>{
+    return await commonAPI ("GET",`${BASE_URL}/admin/get-product?search=${search}`,"","")
 }
 
 export const editProductAPI = async(id,product,reqHeader)=>{
@@ -96,3 +96,8 @@ export const setPasswordAPI = async(reqBody)=>{
 export const googleSignInAPI = async(reqBody)=>{
     return await commonAPI("POST",`${BASE_URL}/google/SignIn`,reqBody,"")
 }
+
+export const ReviewsAPI = async(reqBody,id)=>{
+    return await commonAPI("POST",`${BASE_URL}/product/review/${id}`,reqBody,"")
+}
+

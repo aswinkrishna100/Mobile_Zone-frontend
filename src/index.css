@@ -11,4 +11,26 @@
   }
 } */
 
-
+/* 
+//     <Row>
+            //         <p>Order ID : {item?._id}</p>
+            //         <p>Time : {item?.orderDate.toLocaleString()}</p>
+            //         <p>Status : {item?.status}</p>
+            //        <p>Total Amount : {item?.amount}</p>
+            //     </Row>
+            //     <Row>
+            //         )):""
+            //     {
+            //     item.products.map((items,index)=>(
+            //     <Col lg={6} md={6} sm={12} className='ms-5 me-5'>
+            //         <Card.Img variant="top"  src={items?`${BASE_URL}/uploads/${items.productid.image}`:""} style={{height:"100px",width:"100px", backgroundSize:"cover"}} />
+            //         <Card.Title>{items?.productid.name}</Card.Title>
+            //     </Col>
+            //     ))
+            //     }
+            //     </Row>
+            //     <div className='me-auto'>
+            //         <Button variant="primary" style={{height:"50px"}} onClick={()=>paymentSlip(item.payment_id)} >Download</Button>
+            //     </div>
+            // </Card.Body>
+            // </Card> */

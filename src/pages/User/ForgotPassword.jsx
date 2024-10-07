@@ -6,7 +6,8 @@ function ForgotPassword() {
 
     const [email,setEmail] = useState()
 
-    const handleSend = async()=>{  
+    const handleSend = async(e)=>{
+        e.preventDefault()  
         if(!email){
             alert("Please Enter the Email")
         }else{

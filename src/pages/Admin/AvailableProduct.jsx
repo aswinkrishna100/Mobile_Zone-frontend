@@ -42,7 +42,6 @@ function AvailableProduct() {
           alert("Unauthorized User")
         }
         const result = await deleteProductAPI(id,reqHeader)
-        console.log(result);
     if(result.status==200){
       setEditResponse(result)
       alert("Product Deleted")
@@ -69,7 +68,6 @@ function AvailableProduct() {
                 <th>Operations</th>
             </tr>
         </thead>
-
         <tbody>
           {
             product?.length > 0 ?

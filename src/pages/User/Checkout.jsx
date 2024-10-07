@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { DeleteCartbyOrderAPI, OrdersAPI, paymentAPI } from '../../services/allAPI'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { EditContext } from '../../context/EditContext';
 
 function Checkout({orders,total}) {
 
@@ -13,6 +14,7 @@ function Checkout({orders,total}) {
 
     const [responseId,setResponseId] = useState("")
     const [address,setAddress] = useState("")
+    const {setCartResponse} = useContext(EditContext)
 
     useEffect(()=>{
         const user = JSON.parse(sessionStorage.getItem("user"))
@@ -59,6 +61,7 @@ function Checkout({orders,total}) {
         const result = await paymentAPI(reqBody,reqHeader)        
         if(result.status == 200){
             handleRazorpayScreen(result.data.amount)
+
         }else{
             console.log(result);
         }
@@ -79,6 +82,7 @@ function Checkout({orders,total}) {
             handler: function(result){
                 setResponseId(result.razorpay_payment_id)
                 placeOrders(result.razorpay_payment_id)
+
             },
 
         theme : {
@@ -114,9 +118,9 @@ function Checkout({orders,total}) {
         handleClose()
         if(result.status == 200){
             handleDelete()
+            setCartResponse(result)
         }else{
             console.log(result);
-            
         }
     }
 

@@ -17,17 +17,11 @@ function Products() {
   const [mobile,setMobile] = useState([])
   const {editResponse} = useContext(EditContext)
 
+  const [search,setSearch] = useState()  
+
   const getProductDetails = async()=>{
-    const token = sessionStorage.getItem('token')
-    if(token){
-      var reqHeader = {
-        "Content-Type":"multipart/form-data",
-        "Authorization": `Bearer ${token}`
-      }
-    }else{
-      alert("Unauthorized User")
-    }
-    const result = await getProductAPI(reqHeader)
+    
+    const result = await getProductAPI()
     if(result.status  == 200){
       setProduct(result.data)
     }
@@ -72,18 +66,19 @@ function Products() {
     // ascending order
 
   const ascending = ()=>{
-    const price = product.map((item)=>(item.price));
-    console.log(price.sort((n1,n2)=>n1-n2));
+    const price = product.sort((n1,n2)=>n1.price-n2.price);
+    setProduct(price)
+    console.log(price);
   }
 
     // descending order
 
   const descending = ()=>{
-    const price = product.map((item)=>(item.price));
-    console.log(price.sort((n1,n2)=>n2-n1));
+    const price = product.sort((n1,n2)=>n2.price-n1.price)
+    setProduct(price)
+    console.log(price);
   }
   
-
   return (
     <div className={darkMode ? `bg-dark text-light`:`bg-light text-dark`}>
         <Row>
@@ -106,7 +101,7 @@ function Products() {
           </Col>
 
           <Col lg={4} md={4} sm={12} className='d-flex'>
-          <input type="text" className='form-control w-50 mt-2' placeholder='Search'/>
+          <input type="text" className='form-control w-50 mt-2' placeholder='Search' onChange={(e)=>setSearch(e.target.value)}/>
           <button className='ms-2 rounded' id='search'><i class="fa-solid fa-magnifying-glass"></i></button>
           </Col>
         </Row>

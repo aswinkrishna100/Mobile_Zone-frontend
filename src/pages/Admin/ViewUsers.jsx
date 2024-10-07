@@ -1,11 +1,11 @@
 import { useContext, useEffect, useState } from "react"
 import { getUsersAPI } from "../../services/allAPI"
-import { EditContext } from "../../context/EditContext"
+import { ThemeContext } from "../../context/ThemeContext"
 
 function ViewUsers() {
 
   const [user,setUser] = useState([])
-    // const {editResponse} = useContext(EditContext)
+  const {darkMode} = useContext(ThemeContext)
 
   const getUserDetails = async()=>{
     const token = sessionStorage.getItem('token')
@@ -28,7 +28,7 @@ function ViewUsers() {
   },[])
   
   return (
-    <div id="divtable">
+    <div id="divtable" className={darkMode ? `bg-dark text-light`:`bg-light text-dark`}>
       <h3 className='text-center mb-3 mt-5'>Registered Users Details</h3>
       <table className='w-75 m-5 shadow table table-bordered' id="table">
         <thead className='text-center'>

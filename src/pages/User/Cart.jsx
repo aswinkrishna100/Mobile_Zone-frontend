@@ -11,7 +11,7 @@ import Checkout from './Checkout'
 function Cart() {
 
   const {darkMode} = useContext(ThemeContext)
-  const {editResponse,setEditResponse} = useContext(EditContext)
+  const {setCartResponse,cartResponse} = useContext(EditContext)
   const [cart,setCart] = useState([])
   const [total,setTotal] = useState()
 
@@ -30,14 +30,15 @@ function Cart() {
     console.log(result.data.products);
     
     if(result.status  == 200){
-      setCart(result.data.products)      
+      setCart(result.data.products)
+
     }
   }
   
 
   useEffect(()=>{
     getCartProducts()
-  },[setEditResponse])
+  },[setCartResponse,cartResponse])
 
   useEffect(()=>{
     displaytotal()

@@ -2,6 +2,7 @@ import React from 'react'
 import { Col, Row } from 'react-bootstrap'
 
 function About() {
+
   return (
     <div className='w-100'>
         <div id='aboutpage'>

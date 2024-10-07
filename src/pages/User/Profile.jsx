@@ -3,20 +3,25 @@ import { Button, Form, Modal } from 'react-bootstrap'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { editUserAPI } from '../../services/allAPI';
-import { EditContext } from '../../context/EditContext';
 import { BASE_URL } from '../../services/baseURL';
+import { useNavigate } from 'react-router-dom';
+import { EditContext } from '../../context/EditContext';
 
 function Profile() {
     const [show, setShow] = useState(false);
     const user = JSON.parse(sessionStorage.getItem('user'))
     const [edit,setEdit] = useState(false)
     const [editUser,setEditUser] = useState({
-      fname : user.fname,
-      lname : user.lname,
-      email : user.email,
-      address : user.address,
+      fname : user?.fname,
+      lname : user?.lname,
+      email : user?.email,
+      address : user?.address,
       profileImage :""
     })
+
+    const navigate = useNavigate()
+
+    const {setProfileResponse} = useContext(EditContext)
 
     const [preview, setPreview] = useState()
 
@@ -68,6 +73,13 @@ function Profile() {
       }
     }
 
+    const handleClear = ()=>{
+      sessionStorage.clear()
+      setShow(false)
+      navigate('/login')
+      setProfileResponse("logout..")
+    }
+
     
   return (
     <div>
@@ -80,7 +92,7 @@ function Profile() {
       >
         <Modal.Header closeButton>
           <Modal.Title id="example-custom-modal-styling-title">Profile</Modal.Title>
-          <button className='btn btn-secondary' style={{marginLeft:"300px"}} onClick={handleEdit}><i class="fa-solid fa-pen-to-square"></i></button>
+          <button className='btn btn-secondary' id='profileEdit' onClick={handleEdit}><i class="fa-solid fa-pen-to-square"></i></button>
         </Modal.Header>
         <Modal.Body>
             <Form.Label>
@@ -97,13 +109,14 @@ function Profile() {
                </>
               }
             </Form.Label> 
-            <input type="text" className='form-control mb-3' value={editUser.fname}  disabled={edit ? false : true} onChange={(e)=>setEditUser({...editUser,fname:e.target.value})}/>
+            <input type="text" className='form-control mb-3' value={editUser?.fname}  disabled={edit ? false : true} onChange={(e)=>setEditUser({...editUser,fname:e.target.value})}/>
             <Form.Label>Last Name</Form.Label>
-            <input type="text" className='form-control mb-3' value={editUser.lname}  disabled={edit ? false : true} onChange={(e)=>setEditUser({...editUser,lname:e.target.value})}/>
+            <input type="text" className='form-control mb-3' value={editUser?.lname}  disabled={edit ? false : true} onChange={(e)=>setEditUser({...editUser,lname:e.target.value})}/>
             <Form.Label>Email</Form.Label>
-            <input type="email" className='form-control mb-3' value={editUser.email}  disabled={edit ? false : true} onChange={(e)=>setEditUser({...editUser,email:e.target.value})}/>
+            <input type="email" className='form-control mb-3' value={editUser?.email}  disabled={edit ? false : true} onChange={(e)=>setEditUser({...editUser,email:e.target.value})}/>
             <Form.Label>Address</Form.Label>
-            <textarea className='form-control mb-3' value={editUser.address} disabled={edit ? false : true} onChange={(e)=>setEditUser({...editUser,address:e.target.value})}></textarea>
+            <textarea className='form-control mb-3' value={editUser?.address} disabled={edit ? false : true} onChange={(e)=>setEditUser({...editUser,address:e.target.value})}></textarea>
+            <button className='btn btn-danger me-2' onClick={handleClear}>Logout</button>
             {
               edit ?
               <button className='btn btn-success' onClick={handleUpdate}>Save</button>

@@ -9,12 +9,10 @@ function Header() {
      const {darkMode,toggleDarkMode} = useContext(ThemeContext)
      const handleClick=()=>{
       toggleDarkMode()
-      setDark(true)
+      setDark(!dark)
      }
-const {editResponse} = useContext(EditContext)
-
+const {profileResponse} = useContext(EditContext)
 const [dark,setDark] = useState(false)
-
 const [token,setToken] = useState("")
 
 useEffect(()=>{
@@ -22,7 +20,7 @@ useEffect(()=>{
   if(getToken){
     setToken(getToken)
   }
-},[editResponse])
+},[profileResponse])
 
   return (
     <div id='navbar'>
@@ -45,14 +43,13 @@ useEffect(()=>{
             :
             <Button variant="dark" onClick={handleClick}>Dark</Button>
           }
-          {/* <Button variant="dark" onClick={handleClick}>Dark</Button> */}
           {
             token ?
             <>
                <Profile/>
             </>
             :
-            <button className='btn btn-light ms-2'><Link style={{color:"black", textDecoration:"none"}} to={'/login'}>Login</Link></button>
+            <button className='btn btn-light'><Link style={{color:"black", textDecoration:"none"}} to={'/login'}>Login</Link></button>
           }
           
         </Navbar.Collapse>

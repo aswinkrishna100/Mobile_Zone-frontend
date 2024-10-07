@@ -1,18 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { getOrderAdminAPI } from '../../services/allAPI'
 import { Button, Card, Col, Row } from 'react-bootstrap'
 import { BASE_URL } from '../../services/baseURL'
+import { EditContext } from '../../context/EditContext'
 
 function Orders() {
 
   const [orders,setOrders] = useState([])
+  const {setOrderResponse} = useContext(EditContext)
 
   useEffect(()=>{
       getOrderDetails()
-  },[])
+  },[setOrderResponse])
 
   const getOrderDetails = async()=>{
-      const user = JSON.parse(sessionStorage.getItem("user"))
       const token = sessionStorage.getItem('token')
       if(token){
       var reqHeader = {
@@ -24,21 +25,17 @@ function Orders() {
       }
 
       const result = await getOrderAdminAPI(reqHeader)
-      console.log(result);
-      
       if(result.status == 200){
           setOrders(result.data)
       }
   }
 
   return (
-    <div>
-      <Row>
+    <div className='divtable'>
         {
             orders?.length > 0 ?
             orders.map((item,index)=>(
-            <Col lg={12} md={1} sm={1} className='ms-2'>
-            <Card style={{ width: '80rem'}}>
+            <Card style={{ width: '80rem'}} className='table'>
             <Card.Body className='d-flex'>
                 <Card.Text style={{fontWeight:'bold'}}>
                 <Col>
@@ -59,15 +56,11 @@ function Orders() {
                 </Col>
                 ))
                 }
-                {/* <div className='ms-auto'>
-                    <Button variant="primary" className='me-2' style={{height:"50px"}}>Download</Button>
-                </div> */}
+               
             </Card.Body>
             </Card>
-            </Col>
             )):""
         }
-        </Row>
     </div>
   )
 }

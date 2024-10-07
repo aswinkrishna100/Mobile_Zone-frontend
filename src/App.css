@@ -78,3 +78,21 @@
     margin: 0;
     padding: 0;
 }
+
+#profileEdit{
+    margin-left: 320px;
+}
+
+#loginImg {
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    #loginImg {
+      display: none;
+    }
+    #profileEdit {
+        margin-left: 200px;
+    }
+  }
+

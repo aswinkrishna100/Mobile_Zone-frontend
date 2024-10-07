@@ -123,7 +123,7 @@ function RegisterForm() {
 
   return (
     <div>
-      <div className="row">
+      <div className="row mb-5">
         <div className="col"></div>
           { 
           !isOtpVerified ?
